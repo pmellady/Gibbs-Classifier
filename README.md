@@ -109,3 +109,13 @@ So, we obtain
 $$
 Z_i|q, 	\textbf{Y}, \boldsymbol{\lambda}\sim bern(p),\quad\text{where }p=\frac{f(y_i|\lambda_1)q}{f(y_i|\lambda_1)q+f(y_i|\lambda_0)(1-q)}
 $$
+
+## Gibbs Sampling Loop
+Now that we have the necessary conditional posteriors, we can implement a Gibbs sampler in the following order:
+
+* Sample $\lambda_0|\textbf{Y},\textbf{Z},\lambda_1, q$
+* Sample $\lambda_1|\textbf{Y},\textbf{Z},\lambda_0, q$
+* Sample $q|\textbf{Y},\textbf{Z}, \lambda_0, \lambda_1$
+* Sample $\textbf{Z}|\textbf{Y}, \lambda_0, \lambda_1, q$
+
+We additionally impose an ordering constraint on the $\lambda_i$ values to prevent label switching while sampling. If, at any point in our sampling, we obtain $\lambda_1>\lambda_0$, we will switch every parameter to the opposite class. We impose this constraint by using the assumption that spam emails should have the higher average spam word count. This constraint is just the mathematical translation of this statement.
