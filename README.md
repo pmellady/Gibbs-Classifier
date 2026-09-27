@@ -41,11 +41,13 @@ P(\lambda_0|\lambda_1,	extbf{Y},q,	extbf{Z})=P(\lambda_0|\lambda_1,	extbf{Y},	ex
 $$
 
 This is a straightforward application of Bayes' rule where the likelihood of the data is given by $\prod_{i=1}^nf(y_i|\lambda_0)^{1-z_i}f(y_i|\lambda_1)^{z_i}$, the prior density is $\pi(\lambda_0)$ and the constant $c$ is for normalization. Since we assume an exponential distribution on $\lambda_0$ and since $f(y_i|\lambda_1)^{z_i}$ has no dependence on $\lambda_0$, we can simplify this as follows:
+
 $$
 P(\lambda_0|\lambda_1,	extbf{Y},q,	extbf{Z})=c_1\frac{1}{\beta}e^{-\lambda_0/\beta}\prod_{i=1}^nf(y_i|\lambda_0)^{1-z_i}=c_1\frac{1}{\beta}e^{-\lambda_0/\beta}\prod_{i=1}^n(\frac{e^{-\lambda_0}\lambda_0^{y_i}}{y_i!})^{1-z_i}
 $$
 
 We can further simplify this by rearranging more constants to obtain
+
 $$
 P(\lambda_0|\lambda_1,	extbf{Y},q,	extbf{Z})=c_2\lambda_0^{\sum y_i(1-z_i)}e^{-\lambda_0(\frac{1}{\beta}+\sum(1-z_i))}
 $$
@@ -64,6 +66,7 @@ $$
 
 ### The distribution of $q|	extbf{Y},	extbf{Z},\boldsymbol{\lambda}$
 Note that $P(q|	extbf{Y},	extbf{Z},\boldsymbol{\lambda})=P(q|	extbf{Z})=p(	extbf{Z}|q)P(q)$. With the conditional distribution of $Z_i|q$ as in the model statement and with the assigned $beta(a,b)$ prior on $q$, this gives us
+
 $$
 P(q|	extbf{Y},	extbf{Z},\boldsymbol{\lambda})=cq^{a-1}(1-q)^{b-1}\prod_{i=1}^nq^{z_i}(1-q)^{1-z_i}=cq^{a+\sum z_i-1}(1-q)^{b+n-\sum z_i-1}
 $$
@@ -72,26 +75,31 @@ and hence $q|	extbf{Y},	extbf{Z},\boldsymbol{\lambda}\sim beta(a+\sum z_i, b+n-\
 
 ### The distribution of $	extbf{Z}|q,	extbf{Y},\boldsymbol{\lambda}$
 Lastly, since we will be sampling the vector of $Z_i$s simultaneously, we need to find the posterior distribution of $	extbf{Z}|q,	extbf{Y},\boldsymbol{\lambda}$. To do this, note that
+
 $$
 P(	extbf{Z}|q,	extbf{Y},\boldsymbol{\lambda})=cP(	extbf{Z},q,	extbf{Y},\boldsymbol{\lambda})=cP(	extbf{Y}| q,	extbf{Z}, \boldsymbol{\lambda})P(q,	extbf{Z})=cP(	extbf{Y}| q,	extbf{Z},\boldsymbol{\lambda})P(	extbf{Z}|q)P(q)
 $$
 
 Since the prior distribution of $q$ is seen as constant in the distribution of $	extbf{Z}$ is can be absorbed into the constant to obtain
+
 $$
 P(	extbf{Z}|q,	extbf{Y},\boldsymbol{\lambda})=c_1P(	extbf{Y}|q,	extbf{Z},\boldsymbol{\lambda})P(	extbf{Z}|q)=c_1P(	extbf{Y}|	extbf{Z},\boldsymbol{\lambda})P(	extbf{Z}|q)
 $$
 
 Where we simplify $P(	extbf{Y}|q,	extbf{Z},\boldsymbol{\lambda})$ to $P(	extbf{Y}|	extbf{Z},\boldsymbol{\lambda})$ since the condition on $	extbf{Z}$ makes $q$ superfluous. Now, since the $Y_i$s and $Z_i$s are conditionally independent, we can write this as a product of the mass functions as follows
+
 $$
 P(	extbf{Z}|q,	extbf{Y},\boldsymbol{\lambda})=c_1\prod_{i=1}^nf(y_i|\lambda_0)^{1-z_i}f(y_i|\lambda_1)^{z_i}q^{z_i}(1-q)^{1-z_i}
 $$
 
 We now let $p_{0i}=f(y_i|\lambda_0)(1-q)$ and $p_{1i}=f(y_i|\lambda_1)q$, which gives
+
 $$
 P(	extbf{Z}|q,	extbf{Y},\boldsymbol{\lambda})=c_1\prod_{i=1}^n p_{01}^{1-z_i}p_{1i}^{z_i}
 $$
 
 Defining $p=\frac{p_{1i}}{p_{1i}+p_{0i}}$ and simplifying the above gives
+
 $$
 P(	extbf{Z}|q,	extbf{Y},\boldsymbol{\lambda})=c_2\prod_{i=1}^n (1-p)^{1-z_i}p^{z_i}=c_2\prod_{i=1}^n f(z_i|p)
 $$
