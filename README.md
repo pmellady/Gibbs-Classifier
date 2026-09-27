@@ -1,4 +1,4 @@
-Here is an implementation of a Gibbs sampler to email spam/not-spam data to perform classification.
+This repository contains a derivation and implementation of an interesting classification algorithm. By making the assumption that spam emails contain "spam" words, we can calculate the total spam word count per email and assume that these counts are Poisson distributed. Not all emails are spam, though, and some of those non-spam emails may contain "spam" words, so we can conceptualize an email inbox as a random sample from a mixture of Poisson distributions. The following derivation is an implementation of a Gibbs sampler specifically for this set-up.
 
 ## Distributional Assumptions
 We start by assuming distributional properties about our data. We make the assumption that emails are drawn from a mixture of two poisson distributions. Let $Y_i$ be the number of "spam" words in the $i^{th}$ email, then we are assuming
