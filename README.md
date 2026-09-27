@@ -1,5 +1,7 @@
 This repository contains a derivation and implementation of an interesting classification algorithm. By making the assumption that spam emails contain "spam" words, we can calculate the total spam word count per email and assume that these counts are Poisson distributed. Not all emails are spam, though, and some of those non-spam emails may contain "spam" words. So, if we must then conceptualize an email inbox as a random sample from a mixture of two Poisson distributions, spam and not spam, with a different Poisson rate for the "spam" word count. The following derivation is an implementation of a Gibbs sampler specifically for this set-up.
 
+You can find the code for this model in the gibbs_sampler.R script in this repository, the data is stored in the spam.csv file, and a full report including the derivation, code, and plots can be found in the Gibbs-Classified.pdf.
+
 ## Distributional Assumptions
 We start by assuming distributional properties about our data. We make the assumption that emails are drawn from a mixture of two poisson distributions. Let $Y_i$ be the number of "spam" words in the $i^{th}$ email, then we are assuming
 
